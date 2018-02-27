@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\.build\Common.props" Condition=" Exists('..\.build\Common.props') " />
+  <PropertyGroup>
+    <ProjectGuid>{17CD3938-8637-4962-B57D-A0448B5B2AB0}</ProjectGuid>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PentegyServices.Logging.Core.Test</RootNamespace>
+    <AssemblyName>PentegyServices.Logging.Core.Test</AssemblyName>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="CustomImpl\CustomLoggingServiceTest.cs" />
+    <Compile Include="CustomImpl\CustomLogRepository.cs" />
+    <Compile Include="CustomImpl\CustomLogService.cs" />
+    <Compile Include="CustomImpl\CustomServiceAppender.cs" />
+    <Compile Include="Diagnostics\ThreadPoolMonitorTest.cs" />
+    <Compile Include="Json\ByteArrayJsonConverterTest.cs" />
+    <Compile Include="Json\FormatTest.cs" />
+    <Compile Include="MaskAttributeTest.cs" />
+    <Compile Include="Json\MaskJsonConverterTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\WinPrincipalTest.cs" />
+    <Compile Include="ServiceModel\FaultClientMessageInspectorTest.cs" />
+    <Compile Include="ServiceModel\FaultingService.cs" />
+    <Compile Include="ServiceModel\FaultServiceErrorHandlerTest.cs" />
+    <Compile Include="ServiceModel\ISampleService.cs" />
+    <Compile Include="ServiceModel\SampleService.cs" />
+    <Compile Include="ServiceModel\ThreadContextInspectorTest.cs" />
+    <Compile Include="ServiceModel\XmlParameterInspectorClientTest.cs" />
+    <Compile Include="ServiceModel\XmlParameterInspectorServiceTest.cs" />
+    <Compile Include="ServiceModel\XmlParameterInspectorTestBase.cs" />
+    <Compile Include="ServiceTestCaseBase.cs" />
+    <Compile Include="SysUtilTest.cs" />
+    <Compile Include="TestCaseBase.cs" />
+    <Compile Include="Web\LoggingRuleTest.cs" />
+    <Compile Include="XSerializerlTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PentegyServices.Logging.Core\PentegyServices.Logging.Core.csproj">
+      <Project>{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}</Project>
+      <Name>PentegyServices.Logging.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\.build\Version.props" Condition=" Exists('..\.build\Version.props') " />
+  <Import Project="..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.2.0\build\net45\MSTest.TestAdapter.targets')" />
+</Project>

@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PentegyServices.Logging.Core", "PentegyServices.Logging.Core\PentegyServices.Logging.Core.csproj", "{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PentegyServices.Logging.Core.Test", "PentegyServices.Logging.Core.Test\PentegyServices.Logging.Core.Test.csproj", "{17CD3938-8637-4962-B57D-A0448B5B2AB0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3F0F57D5-44A2-4F02-B7F9-C883120630A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{8FE03F36-7F06-4946-8240-A86A3670B324}"
+	ProjectSection(SolutionItems) = preProject
+		.build\Common.props = .build\Common.props
+		.build\Version.props = .build\Version.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuspec", ".nuspec", "{59F641A4-52D8-4527-B697-A2AB3D356D8F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuspec\PentegyServices.Logging.Client.nuspec = .nuspec\PentegyServices.Logging.Client.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{199313C4-78F2-4CBA-9941-36C49055F328}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.config = .nuget\NuGet.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D66DD61-97C3-4013-848B-EA9374FB07C7}"
+	ProjectSection(SolutionItems) = preProject
+		Clean.proj = Clean.proj
+		Version.proj = Version.proj
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{4840E6D9-1D50-4FB6-A62F-3AA03BF2B64A}.Release|AnyCPU.Build.0 = Release|Any CPU
+		{17CD3938-8637-4962-B57D-A0448B5B2AB0}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{17CD3938-8637-4962-B57D-A0448B5B2AB0}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{17CD3938-8637-4962-B57D-A0448B5B2AB0}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{17CD3938-8637-4962-B57D-A0448B5B2AB0}.Release|AnyCPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{17CD3938-8637-4962-B57D-A0448B5B2AB0} = {3F0F57D5-44A2-4F02-B7F9-C883120630A5}
+		{1D66DD61-97C3-4013-848B-EA9374FB07C7} = {8FE03F36-7F06-4946-8240-A86A3670B324}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE51886C-1D48-4F6B-A477-9D2FD5EB7715}
+	EndGlobalSection
+EndGlobal

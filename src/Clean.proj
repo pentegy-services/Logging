@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Clean" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    This project is called by CI system or manually to clean old compilations.
+    
+    Example: MSBuild Clean.proj /t:Clean /p:Configuration=Release;Platform=AnyCPU
+  -->
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.5</TargetFrameworkVersion>
+
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == 'Any CPU' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Configurations Include="Debug;Release" />
+  </ItemGroup>
+  
+  <Target Name="Clean">
+    <ItemGroup>
+      <Process Include="w3wp.exe" />
+      <Process Include="VBCSCompiler.exe" />
+      <TmpFiles Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\obj\))**\*.*" />
+      <TmpFiles Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\out\))**\*.*" />
+      <TmpFiles Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\))**\*.log.*" />
+      <TmpFiles Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\))**\*.svclog" />
+      <TmpFiles Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\))**\TestResult.xml" />
+      <TmpDirs Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\obj\))" />
+      <TmpDirs Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\out\))" />
+    </ItemGroup>
+
+    <Exec Command="taskkill /f /im %(Process.Identity) /fi &quot;memusage gt 40&quot;" 
+          WorkingDirectory="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\))" 
+          IgnoreExitCode="true" />
+
+    <Delete Files="@(TmpFiles)" />
+    <RemoveDir Directories="@(TmpDirs)" />
+
+    <MSBuild Projects="Client.sln" 
+             Properties="Configuration=%(Configurations.Identity);Platform=$(Platform);TargetFrameworkVersion=$(TargetFrameworkVersion)" 
+             Targets="Clean" 
+             BuildInParallel="True" />
+  </Target>
+</Project>

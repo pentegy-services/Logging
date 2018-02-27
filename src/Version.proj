@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    This project is called by CI system for update SolutionInfo.cs file with a build number.
+    
+    SolutionInfo.cs is used to set version for all the assemblies in the project.
+    
+    Example: MSBuild Version.proj /t:Build /p:Version=1.0.0.0;Configuration=Release;BranchName=master
+  -->
+  <Target Name="Build">
+    <PropertyGroup>
+      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+      <BranchName Condition=" '$(BranchName)' == '' ">main</BranchName>
+      <Version Condition=" '$(Version)' == '' ">1.0.0.0</Version>
+      <KeyFilePath Condition=" '$(KeyFilePath)' == '' ">$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)\..\))PentegyServices.Logging.OpenSource.snk</KeyFilePath>
+      
+      <CompanyName Condition=" '$(CompanyName)' == '' ">PENTEGY SERVICES LLC</CompanyName>
+      <ProductName Condition=" '$(ProductName)' == '' ">Pentegy Services | Logging Framework®</ProductName>
+
+      <VersionMajor>$([System.Text.RegularExpressions.Regex]::Match($(Version), `^\d+`))</VersionMajor>
+      <VersionMinor>$([System.Text.RegularExpressions.Regex]::Match($(Version), `(?&lt;=^\d+\.)\d+`))</VersionMinor>
+      <VersionMinor>$([System.Text.RegularExpressions.Regex]::Match($(Version), `(?&lt;=^\d+\.)\d+`))</VersionMinor>
+      <VersionBuild>$([System.Text.RegularExpressions.Regex]::Match($(Version), `(?&lt;=^\d+\.\d+\.)\d+`))</VersionBuild>
+      <VersionRevision>$([System.Text.RegularExpressions.Regex]::Match($(Version), `(?&lt;=^\d+\.\d+\.\d+\.)\d+`))</VersionRevision>
+
+      <BranchName>$([System.String]::Copy('$(BranchName)').Replace('refs/heads/', '').Replace('.', '').ToLowerInvariant())</BranchName>
+      <BranchName Condition=" '$(BranchName)' == '' ">main</BranchName>
+      <BranchName Condition=" '$(BranchName)' == 'master' ">main</BranchName>
+      
+      <InformationalVersion>$([System.String]::Format("{0}.{1}.rs_{2}.{3:yyMMdd-HHmm}", $(VersionBuild), $(VersionRevision), $(BranchName), $([System.DateTime]::UtcNow)))</InformationalVersion>
+    </PropertyGroup>
+    
+    <Message Text="Configuration: $(Configuration)" />
+    <Message Text="InformationalVersion: $(InformationalVersion)" />
+    <Message Text="Version: $(Version)" />
+
+    <ItemGroup>
+      <ContentItem Include="//------------------------------------------------------------------------------" />
+      <ContentItem Include="//	%3Cauto-generated%3E" />
+      <ContentItem Include="//		Changes to this file may cause a malfunction and will be lost in case" />
+      <ContentItem Include="//		of re-code generation." />
+      <ContentItem Include="//	%3C/auto-generated%3E" />
+      <ContentItem Include="//------------------------------------------------------------------------------" />
+      <ContentItem Include='[assembly: System.CLSCompliant(true)]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyCompany("$(CompanyName)")]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyConfiguration("$(Configuration)")]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyCopyright("© 2011-$([System.DateTime]::Now.Year) $(CompanyName). All rights reserved.")]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyCulture("")]'/>
+      <ContentItem Include="#if DelaySign" />
+      <ContentItem Include="[assembly: System.Reflection.AssemblyDelaySign(true)]" />
+      <ContentItem Include="#endif" />
+      <ContentItem Include='[assembly: System.Reflection.AssemblyFileVersion("$(Version)")]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyInformationalVersion("$(InformationalVersion)")]'/>
+      <ContentItem Include="#if DelaySign" />
+      <ContentItem Include='[assembly: System.Reflection.AssemblyKeyFile(@"$(KeyFilePath)")]' />
+      <ContentItem Include="#endif" />
+      <ContentItem Include='[assembly: System.Reflection.AssemblyProduct("$(ProductName)")]'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyTrademark("$(ProductName) is a registered trademark of $(CompanyName).")]'/>
+      <ContentItem Include='#if !XmlSerializers'/>
+      <ContentItem Include='[assembly: System.Reflection.AssemblyVersion("$(VersionMajor).$(VersionMinor).0.0")]'/>
+      <ContentItem Include='#endif'/>
+      <ContentItem Include='[assembly: System.Resources.NeutralResourcesLanguage("en", System.Resources.UltimateResourceFallbackLocation.Satellite)]' />
+      <ContentItem Include='[assembly: System.Runtime.InteropServices.ComVisible(false)]'/>
+    </ItemGroup>
+    
+    <WriteLinesToFile File="SolutionInfo.cs" 
+                      Lines="@(ContentItem)"
+                      Overwrite="true"
+                      Encoding="utf-8" />
+  </Target>
+</Project>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="3.4.0">
+    <id>PentegyServices.Logging.Client</id>
+    <version>$version$</version>
+    <title>PentegyServices.Logging.Client</title>
+    <authors>PENTEGY SERVICES LLC</authors>
+    <owners>PentegyServices</owners>
+    <licenseUrl>https://github.com/pentegy-services/Logging/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/pentegy-services/Logging</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>
+      This module helps the programmer to log data to various sources (file, database, system log, others).
+    </summary>
+    <description>
+      This module helps the programmer to log data to various sources (file, database, system log, others). In case of found issue in the application it should be possible to enable logging so that the problem is detected and fixed. With this module allows to configure logging at runtime without modifying the application binary.
+
+The module has been developed on the base of log4net library.
+
+This package was built from the source at https://github.com/pentegy-services/Logging/commit/$commit_hash$
+    </description>
+    <releaseNotes>
+      This package was built from the source at https://github.com/pentegy-services/Logging/commit/$commit_hash$
+    </releaseNotes>
+    <copyright>© 2011-2018 PENTEGY SERVICES LLC. All rights reserved.</copyright>
+    <tags>logging, tracing, log, logfiles, log4net</tags>
+    <dependencies>
+      <group targetFramework="net45">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+      </group>
+    </dependencies>
+    <references>
+      <group targetFramework="net45">
+        <reference file="PentegyServices.Logging.Core.dll" />
+      </group>
+    </references>
+  </metadata>
+  <files>
+    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Core\PentegyServices.Logging.Core.dll" target="lib\net45" />
+  </files>
+</package>

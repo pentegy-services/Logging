@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(NETPath)' == '' ">
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.5</TargetFrameworkVersion>
+    <ProgramFilesDir Condition=" 'AMD64' == '$(PROCESSOR_ARCHITECTURE)' ">$(MSBuildProgramFiles32)</ProgramFilesDir>
+    <ProgramFilesDir Condition=" '$(ProgramFilesDir)' == '' ">$(ProgramFiles)</ProgramFilesDir>
+    <WindowsKits Condition=" '$(WindowsKits)' == '' ">$(ProgramFilesDir)\Windows Kits\</WindowsKits>
+    <MicrosoftSDK Condition=" '$(MicrosoftSDK)' == '' ">$(ProgramFilesDir)\Microsoft SDKs\Windows\</MicrosoftSDK>
+    <IsNETPath>false</IsNETPath>
+
+    <WindowsKits Condition=" Exists('$(WindowsKits)10\') ">$(WindowsKits)10\</WindowsKits>
+    <WindowsKits Condition=" Exists('$(WindowsKits)8.1\') and !Exists('$(WindowsKits)10\') ">$(WindowsKits)8.1\</WindowsKits>
+    <WindowsKits Condition=" Exists('$(WindowsKits)8.0\') and !Exists('$(WindowsKits)8.1\') and !Exists('$(WindowsKits)10\') ">$(WindowsKits)8.0\</WindowsKits>
+
+    <WindowsKits_IncludePath>$(WindowsKits)Include\</WindowsKits_IncludePath>
+    <WindowsKits>$(WindowsKits)bin\</WindowsKits>
+
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.16299.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.15063.0\') and !Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.15063.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.14393.0\') and !Exists('$(WindowsKits_IncludePath)10.0.15063.0\') and !Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.14393.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.10586.0\') and !Exists('$(WindowsKits_IncludePath)10.0.14393.0\') and !Exists('$(WindowsKits_IncludePath)10.0.15063.0\') and !Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.10586.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.10240.0\') and !Exists('$(WindowsKits_IncludePath)10.0.10586.0\') and !Exists('$(WindowsKits_IncludePath)10.0.14393.0\') and !Exists('$(WindowsKits_IncludePath)10.0.15063.0\') and !Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.10240.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath Condition=" Exists('$(WindowsKits_IncludePath)10.0.10150.0\') and !Exists('$(WindowsKits_IncludePath)10.0.10240.0\') and !Exists('$(WindowsKits_IncludePath)10.0.10586.0\') and !Exists('$(WindowsKits_IncludePath)10.0.14393.0\') and !Exists('$(WindowsKits_IncludePath)10.0.15063.0\') and !Exists('$(WindowsKits_IncludePath)10.0.16299.0\') ">$(WindowsKits_IncludePath)10.0.10150.0\</WindowsKits_IncludePath>
+    <WindowsKits_IncludePath>$(WindowsKits_IncludePath)um;$(WindowsKits_IncludePath)shared;$(WindowsKits_IncludePath)winrt</WindowsKits_IncludePath>
+
+    <MicrosoftSDK Condition=" Exists('$(MicrosoftSDK)v10.0A\bin\') ">$(MicrosoftSDK)v10.0A\bin\</MicrosoftSDK>
+    <MicrosoftSDK Condition=" Exists('$(MicrosoftSDK)v8.1A\bin\') and !Exists('$(MicrosoftSDK)v10.0A\bin\') ">$(MicrosoftSDK)v8.1A\bin\</MicrosoftSDK>
+    <MicrosoftSDK Condition=" Exists('$(MicrosoftSDK)v8.0A\bin\') and !Exists('$(MicrosoftSDK)v8.1A\bin\') and !Exists('$(MicrosoftSDK)v10.0A\bin\') ">$(MicrosoftSDK)v8.0A\bin\</MicrosoftSDK>
+    <MicrosoftSDK Condition=" Exists('$(MicrosoftSDK)v7.1A\bin\') and !Exists('$(MicrosoftSDK)v8.0A\bin\') and !Exists('$(MicrosoftSDK)v8.1A\bin\') and !Exists('$(MicrosoftSDK)v10.0A\bin\') ">$(MicrosoftSDK)v7.1A\bin\</MicrosoftSDK>
+
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.7.1 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.7 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.6.2 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.6.1 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.6 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.6 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.5.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.5.2 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.5.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.5.1 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.5 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.5 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" Exists('$(MicrosoftSDK)NETFX 4.0 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.5.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.1 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.6.2 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7 Tools\') and !Exists('$(MicrosoftSDK)NETFX 4.7.1 Tools\') ">$(MicrosoftSDK)NETFX 4.0 Tools\</MicrosoftSDKTools>
+    <MicrosoftSDKTools Condition=" '$(MicrosoftSDKTools)' == '' ">$(MicrosoftSDK)</MicrosoftSDKTools>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SrcPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\))</SrcPath>
+    <OutPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\out))\</OutPath>
+    <ObjPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\obj))\</ObjPath>
+    <DocPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\doc))\</DocPath>
+    <ProjectPath>$(SrcPath)$(MSBuildProjectName)\</ProjectPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Platform Condition=" '$(Platform)' == 'Any CPU' ">AnyCPU</Platform>
+    <IsOpenSourceBuild Condition=" '$(IsOpenSourceBuild)' == '' ">false</IsOpenSourceBuild>
+    <IsOpenSourceBuild Condition=" '$(AssemblyOriginatorKeyFile)' == '' ">true</IsOpenSourceBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile Condition=" '$(AssemblyOriginatorKeyFile)' == '' or '$(IsOpenSourceBuild)' == 'true' ">$([System.IO.Path]::GetFullPath($(SrcPath)..\PentegyServices.Logging.OpenSource.snk))</AssemblyOriginatorKeyFile>
+    <CanBeSigning Condition=" '$(CanBeSigning)' == 'false' or '$(CertificatePath)' == '' or '$(CertificateThumbprint)' == '' ">false</CanBeSigning>
+    <CanBeSigning Condition=" '$(CanBeSigning)' != 'false' ">true</CanBeSigning>
+
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <FileAlignment>512</FileAlignment>
+
+    <DefineConstants>TRACE;CODE_ANALYSIS</DefineConstants>
+    <DefineConstants Condition=" '$(IsOpenSourceBuild)' == 'true' ">$(DefineConstants);OpenSource</DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories Condition=" '$(CodeAnalysisRuleSetDirectories)' == '' ">;$(ProgramFilesDir)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\Rule Sets;$(ProgramFilesDir)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets;$(ProgramFilesDir)\Microsoft Visual Studio\2017\Enterprise\Team Tools\Static Analysis Tools\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets Condition=" '$(Configuration)' != 'Debug' ">true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories Condition=" '$(CodeAnalysisRuleDirectories)' == '' ">;$(ProgramFilesDir)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\Rules;$(ProgramFilesDir)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\FxCop\Rules;$(ProgramFilesDir)\Microsoft Visual Studio\2017\Enterprise\Team Tools\Static Analysis Tools\FxCop\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules Condition=" '$(Configuration)' != 'Debug' ">true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <StyleCopTreatErrorsAsWarnings>true</StyleCopTreatErrorsAsWarnings>
+
+    <LangVersion>6</LangVersion>
+
+    <NoWarn>0612,0618,1538,1570,1571,1572,1573,1574,1584,1587,1591,1734,3005,3008,8002</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(NETPath)' == '' ">
+    <TargetFrameworkProfile />
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">NET40</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.0' ">$(DefineConstants);NET4;NET4_greater;NET40;NET45_less;NET46_less;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">NET45</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">$(DefineConstants);NET4;NET4_greater;NET45;NET45_greater;NET46_less;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1' ">NET451</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1' ">$(DefineConstants);NET4;NET4+;NET45_greater;NET451;NET46_less;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.5.2' ">NET452</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5.2' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET452;NET46_less;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.6' ">NET46</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.6' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET46;NET46_greater;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.6.1' ">NET461</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.6.1' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET46_greater;NET461;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.6.2' ">NET462</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.6.2' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET46_greater;NET462;NET47_less</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.7' ">NET47</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.7' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET46_greater;NET47;NET47_greater</DefineConstants>
+
+    <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.7.1' ">NET471</NETPath>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.7.1' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET46_greater;NET47_greater;NET471</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(PROCESSOR_ARCHITECTURE)' == 'x86' ">
+    <WindowsKits>$(WindowsKits)x86\</WindowsKits>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(PROCESSOR_ARCHITECTURE)' == 'AMD64' ">
+    <WindowsKits>$(WindowsKits)x64\</WindowsKits>
+    <MicrosoftSDKTools>$(MicrosoftSDKTools)x64\</MicrosoftSDKTools>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputPath>$(OutPath)$(Configuration)\$(TargetFrameworkVersion)\$(MSBuildProjectName)\</OutputPath>
+    <IntermediateOutputPath>$(ObjPath)$(Configuration)\$(TargetFrameworkVersion)\$(MSBuildProjectName)\</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <MicrosoftSDK>$(MicrosoftSDKTools)</MicrosoftSDK>
+    <SgenPath Condition=" Exists('$(WindowsKits)sgen.exe') ">"$(WindowsKits)sgen.exe"</SgenPath>
+    <SgenPath Condition=" '$(SgenPath)' == '' and Exists('$(MicrosoftSDK)sgen.exe') ">"$(MicrosoftSDK)sgen.exe"</SgenPath>
+    <SignToolPath Condition=" Exists('$(WindowsKits)signtool.exe') ">"$(WindowsKits)signtool.exe"</SignToolPath>
+    <WsdlPath Condition=" Exists('$(MicrosoftSDK)wsdl.exe') ">"$(MicrosoftSDK)wsdl.exe"</WsdlPath>
+    <RCPath Condition=" Exists('$(WindowsKits)rc.exe') ">"$(WindowsKits)rc.exe"</RCPath>
+    <RCPath Condition=" '$(RCPath)' == '' and Exists('$(MicrosoftSDK)rc.exe') ">"$(MicrosoftSDK)rc.exe"</RCPath>
+    <PowerShellExe Condition=" '$(PowerShellExe)' == '' ">"$([System.Environment]::ExpandEnvironmentVariables("%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe"))"</PowerShellExe>
+    <MSDeploy Condition=" '$(MSDeploy)' == '' and Exists('$(ProgramFiles)\IIS\Microsoft Web Deploy V3\msdeploy.exe') ">"$(ProgramFiles)\IIS\Microsoft Web Deploy V3\msdeploy.exe"</MSDeploy>
+    <MSDeploy Condition=" '$(MSDeploy)' == '' and Exists('$(ProgramFiles)\IIS\Microsoft Web Deploy V2\msdeploy.exe') ">"$(ProgramFiles)\IIS\Microsoft Web Deploy V2\msdeploy.exe"</MSDeploy>
+    <MSDeploy Condition=" '$(MSDeploy)' == '' and Exists('$(ProgramFiles)\IIS\Microsoft Web Deploy\msdeploy.exe') ">"$(ProgramFiles)\IIS\Microsoft Web Deploy\msdeploy.exe"</MSDeploy>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <TransformWebConfigEnabled>False</TransformWebConfigEnabled>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DocumentationFile>$(IntermediateOutputPath)$(AssemblyName).xml</DocumentationFile>
+    <CodeAnalysisLogFile>$(OutputPath)$(AssemblyName).CodeAnalysisLog.xml</CodeAnalysisLogFile>
+  </PropertyGroup>
+</Project>
