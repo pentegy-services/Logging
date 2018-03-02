@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{8FE03F36-7F06-4946-8240-A86A3670B324}"
+	ProjectSection(SolutionItems) = preProject
+		.build\Common.props = .build\Common.props
+		.build\Version.props = .build\Version.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuspec", ".nuspec", "{59F641A4-52D8-4527-B697-A2AB3D356D8F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuspec\PentegyServices.Logging.Client.Wcf.nuspec = .nuspec\PentegyServices.Logging.Client.Wcf.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{199313C4-78F2-4CBA-9941-36C49055F328}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.config = .nuget\NuGet.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D66DD61-97C3-4013-848B-EA9374FB07C7}"
+	ProjectSection(SolutionItems) = preProject
+		Clean.proj = Clean.proj
+		Version.proj = Version.proj
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PentegyServices.Logging.Wcf", "PentegyServices.Logging.Wcf\PentegyServices.Logging.Wcf.csproj", "{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1D66DD61-97C3-4013-848B-EA9374FB07C7} = {8FE03F36-7F06-4946-8240-A86A3670B324}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE51886C-1D48-4F6B-A477-9D2FD5EB7715}
+	EndGlobalSection
+EndGlobal

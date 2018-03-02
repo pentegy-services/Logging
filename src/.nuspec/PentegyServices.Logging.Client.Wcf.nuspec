@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package>
   <metadata minClientVersion="3.4.0">
-    <id>PentegyServices.Logging.Client</id>
+    <id>PentegyServices.Logging.Client.Wcf</id>
     <version>$version$</version>
-    <title>PentegyServices.Logging.Client</title>
+    <title>PentegyServices.Logging.Client.Wcf</title>
     <authors>PENTEGY SERVICES LLC</authors>
     <owners>PentegyServices</owners>
     <licenseUrl>https://github.com/pentegy-services/Logging/blob/master/LICENSE</licenseUrl>
@@ -28,16 +28,18 @@ This package was built from the source at https://github.com/pentegy-services/Lo
       <group targetFramework="net45">
         <dependency id="Newtonsoft.Json" version="10.0.3" />
         <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.3.4" />
+        <dependency id="PentegyServices.Logging.Client" version="$version$" />
       </group>
     </dependencies>
     <references>
       <group targetFramework="net45">
-        <reference file="PentegyServices.Logging.Core.dll" />
+        <reference file="PentegyServices.Logging.Wcf.dll" />
       </group>
     </references>
   </metadata>
   <files>
-    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Core\PentegyServices.Logging.Core.dll" target="lib\net45" />
-    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Core\PentegyServices.Logging.Core.xml" target="lib\net45" />
+    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Wcf\PentegyServices.Logging.Wcf.dll" target="lib\net45" />
+    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Wcf\PentegyServices.Logging.Wcf.xml" target="lib\net45" />
   </files>
 </package>

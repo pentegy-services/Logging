@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Import Project="..\.build\Common.props" Condition=" Exists('..\.build\Common.props') " />
+  <PropertyGroup>
+    <ProjectGuid>{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PentegyServices.Logging.Wcf</RootNamespace>
+    <AssemblyName>PentegyServices.Logging.Wcf</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="PentegyServices.Logging.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=decb68d8572ab87a, processorArchitecture=MSIL">
+      <HintPath>..\packages\PentegyServices.Logging.Client.1.0.0\lib\net45\PentegyServices.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="WcfLoggingConfiguration.cs" />
+    <Compile Include="WcfLogReader.cs" />
+    <Compile Include="WcfLogReaderModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\.build\Version.props" Condition=" Exists('..\.build\Version.props') " />
+</Project>

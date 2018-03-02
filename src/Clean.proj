@@ -41,5 +41,10 @@
              Properties="Configuration=%(Configurations.Identity);Platform=$(Platform);TargetFrameworkVersion=$(TargetFrameworkVersion)" 
              Targets="Clean" 
              BuildInParallel="True" />
+
+    <MSBuild Projects="Client.Wcf.sln"
+             Properties="Configuration=%(Configurations.Identity);Platform=$(Platform);TargetFrameworkVersion=$(TargetFrameworkVersion)"
+             Targets="Clean"
+             BuildInParallel="True" />
   </Target>
 </Project>
