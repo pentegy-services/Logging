@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{199313
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D66DD61-97C3-4013-848B-EA9374FB07C7}"
 	ProjectSection(SolutionItems) = preProject
+		Build.Client.Wcf.proj = Build.Client.Wcf.proj
 		Clean.proj = Clean.proj
 		Version.proj = Version.proj
 	EndProjectSection
@@ -29,14 +30,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PentegyServices.Logging.Wcf
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Debug|AnyCPU = Debug|AnyCPU
+		Release|AnyCPU = Release|AnyCPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|AnyCPU.ActiveCfg = Debug|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Debug|AnyCPU.Build.0 = Debug|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|AnyCPU.ActiveCfg = Release|Any CPU
+		{33BA0D11-4FC1-45EA-AF7E-1C5359C66749}.Release|AnyCPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

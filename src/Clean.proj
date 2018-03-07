@@ -35,7 +35,7 @@
           IgnoreExitCode="true" />
 
     <Delete Files="@(TmpFiles)" />
-    <RemoveDir Directories="@(TmpDirs)" />
+    <RemoveDir Directories="@(TmpDirs)" ContinueOnError="WarnAndContinue" />
 
     <MSBuild Projects="Client.sln" 
              Properties="Configuration=%(Configurations.Identity);Platform=$(Platform);TargetFrameworkVersion=$(TargetFrameworkVersion)" 

@@ -28,6 +28,47 @@
     </Otherwise>
   </Choose>
 
+  <Target Name="Package" Condition=" '$(PublishToDir)' != '' and '$(TestProjectType)' != 'UnitTest' ">
+    <ItemGroup>
+      <ExcludedCultures Include="cs;de;es;fr;it;ja;ko;pl;pt;ru;tr;zh-CHS;zh-CHT;zh-Hans;zh-Hant">
+        <InProject>false</InProject>
+      </ExcludedCultures>
+    </ItemGroup>
+    
+    <RemoveDir Directories="@(ExcludedCultures->'$(_PackageTempDir)\%(Filename)')" />
+    <RemoveDir Directories="@(ExcludedCultures->'$(_PackageTempDir)\bin\%(Filename)')" />
+
+    <CreateItem Include="$(OutputPath)\**\*">
+      <Output TaskParameter="Include" ItemName="Binaries" />
+    </CreateItem>
+
+    <PropertyGroup>
+      <PublishName>$([System.String]::Copy(&quot;$(DefaultPackageFileName)&quot;).Replace(&quot;.zip&quot;,&quot;&quot;))</PublishName>
+      <PublishDir>$(PublishToDir)$(PublishName)</PublishDir>
+    </PropertyGroup>
+    
+    <Message Text="Publishing to $(PublishDir)" />
+    
+    <Copy SkipUnchangedFiles="true" SourceFiles="@(Content)" DestinationFolder="$(PublishDir)\%(RecursiveDir)" />
+    <Copy SkipUnchangedFiles="true" 
+          SourceFiles="app.config" 
+          DestinationFiles="$(PublishDir)\Web.config" 
+          Condition="Exists('app.config')" />
+    <Copy SkipUnchangedFiles="true" 
+          SourceFiles="@(Binaries)" 
+          DestinationFolder="$(PublishDir)\%(RecursiveDir)" 
+          Condition=" '$(ProjectTypeGuids)' != '{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}' " />
+    <Copy SkipUnchangedFiles="true" 
+          SourceFiles="@(Binaries)" 
+          DestinationFolder="$(PublishDir)\bin\%(RecursiveDir)" 
+          Condition=" '$(ProjectTypeGuids)' == '{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}' " />
+
+    <ZipDir DirectoryName="$(PublishDir)" FileName="$(PublishToDir)$(DefaultPackageFileName)" />
+
+    <Sha1 FileName="$(PublishToDir)$(DefaultPackageFileName)" />
+    <Sha256 FileName="$(PublishToDir)$(DefaultPackageFileName)" />
+  </Target>
+
   <UsingTask TaskName="ZipDir" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\$(TasksAssemblyName).dll">
     <ParameterGroup>
       <FileName ParameterType="System.String" Required="true" />
@@ -53,41 +94,90 @@
       </Code>
     </Task>
   </UsingTask>
-  
-  <Target Name="Publish" Condition=" '$(PublishToDir)' != '' ">
-    <CreateItem Include="$(OutputPath)\**\*">
-      <Output TaskParameter="Include" ItemName="Binaries" />
-    </CreateItem>
 
-    <PropertyGroup>
-      <PublishName>$([System.String]::Copy(&quot;$(AssemblyName)&quot;).Replace(&quot;.Test&quot;,&quot;&quot;).Replace(&quot;.&quot;,&quot;-&quot;).ToLowerInvariant())</PublishName>
-      <PublishToDir>$(PublishToDir)$(PublishName)</PublishToDir>
-    </PropertyGroup>
-    
-    <Message Text="Publishing to $(PublishToDir)" />
+  <UsingTask TaskName="Sha1" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\$(TasksAssemblyName).dll">
+    <ParameterGroup>
+      <FileName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Security.Cryptography" />
+      <Using Namespace="System.Text" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        try
+        {
+          Log.LogMessage(string.Format("Calculating sha1 of file '{0}'", FileName));
+          using (FileStream fs = new FileStream(FileName, FileMode.Open))
+          {
+            using (BufferedStream bs = new BufferedStream(fs))
+            {
+              using (SHA1Managed sha1 = new SHA1Managed())
+              {
+                Byte[] hash = sha1.ComputeHash(bs);
+                StringBuilder formatted = new StringBuilder(2 * hash.Length);
+                foreach (Byte b in hash)
+                {
+                  formatted.AppendFormat("{0:X2}", b);
+                }
+                
+                File.WriteAllText(FileName + ".sha1", formatted.ToString(), Encoding.UTF8);
+              }
+            }
+          }
+          return true;
+        }
+        catch(Exception ex)
+        {
+          Log.LogErrorFromException(ex);
+          return false;
+        }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
 
-    <Copy SkipUnchangedFiles="true" SourceFiles="@(Content)" DestinationFolder="$(PublishToDir)\%(Content.RelativeDir)" />
-    <Copy SkipUnchangedFiles="true" 
-          SourceFiles="app.config" 
-          DestinationFiles="$(PublishToDir)\Web.config" 
-          Condition="Exists('app.config')" />
-    <Copy SkipUnchangedFiles="true" 
-          SourceFiles="@(Binaries)" 
-          DestinationFolder="$(PublishToDir)\%(RecursiveDir)" 
-          Condition=" '$(ProjectTypeGuids)' != '{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}' " />
-    <Copy SkipUnchangedFiles="true" 
-          SourceFiles="@(Binaries)" 
-          DestinationFolder="$(PublishToDir)\bin\%(RecursiveDir)" 
-          Condition=" '$(ProjectTypeGuids)' == '{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}' " />
-
-    <ZipDir DirectoryName="$(PublishToDir)" FileName="$(PublishToDir).zip" />
-
-    <ItemGroup>
-      <Files Include="$(PublishToDir)\**\*.*" />
-      <Folders Include="$(PublishToDir)\**" />
-    </ItemGroup>
-
-    <Delete Files="@(Files)" />
-    <RemoveDir Directories="$(Folders)" />
-  </Target>
+  <UsingTask TaskName="Sha256" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\$(TasksAssemblyName).dll">
+    <ParameterGroup>
+      <FileName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Security.Cryptography" />
+      <Using Namespace="System.Text" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        try
+        {
+          Log.LogMessage(string.Format("Calculating sha256 of file '{0}'", FileName));
+          using (FileStream fs = new FileStream(FileName, FileMode.Open))
+          {
+            using (BufferedStream bs = new BufferedStream(fs))
+            {
+              using (SHA256Managed sha256 = new SHA256Managed())
+              {
+                Byte[] hash = sha256.ComputeHash(bs);
+                StringBuilder formatted = new StringBuilder(2 * hash.Length);
+                foreach (Byte b in hash)
+                {
+                  formatted.AppendFormat("{0:X2}", b);
+                }
+                
+                File.WriteAllText(FileName + ".sha256", formatted.ToString(), Encoding.UTF8);
+              }
+            }
+          }
+          return true;
+        }
+        catch(Exception ex)
+        {
+          Log.LogErrorFromException(ex);
+          return false;
+        }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
 </Project>

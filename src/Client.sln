@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{199313
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D66DD61-97C3-4013-848B-EA9374FB07C7}"
 	ProjectSection(SolutionItems) = preProject
+		Build.Client.proj = Build.Client.proj
 		Clean.proj = Clean.proj
 		Version.proj = Version.proj
 	EndProjectSection

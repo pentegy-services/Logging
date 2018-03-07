@@ -44,7 +44,6 @@
     <SrcPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\))</SrcPath>
     <OutPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\out))\</OutPath>
     <ObjPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\obj))\</ObjPath>
-    <DocPath>$([System.IO.Path]::GetFullPath($(SrcPath)..\doc))\</DocPath>
     <ProjectPath>$(SrcPath)$(MSBuildProjectName)\</ProjectPath>
   </PropertyGroup>
 
@@ -97,7 +96,7 @@
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5' ">$(DefineConstants);NET4;NET4_greater;NET45;NET45_greater;NET46_less;NET47_less</DefineConstants>
 
     <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1' ">NET451</NETPath>
-    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1' ">$(DefineConstants);NET4;NET4+;NET45_greater;NET451;NET46_less;NET47_less</DefineConstants>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET451;NET46_less;NET47_less</DefineConstants>
 
     <NETPath Condition=" '$(TargetFrameworkVersion)' == 'v4.5.2' ">NET452</NETPath>
     <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v4.5.2' ">$(DefineConstants);NET4;NET4_greater;NET45_greater;NET452;NET46_less;NET47_less</DefineConstants>

@@ -262,7 +262,7 @@ namespace PentegyServices.Logging.Core
 			addValue("AppDomain.CurrentDomain.Id", domain.Id.ToString());
 			addValue("AppDomain.CurrentDomain.FriendlyName", domain.FriendlyName);
 			addValue("AppDomain.CurrentDomain.BaseDirectory", domain.BaseDirectory);
-#if NET4
+#if NET4_greater
 			addValue("AppDomain.CurrentDomain.IsFullyTrusted", domain.IsFullyTrusted.ToString());
 			safeAddValue("AppDomain.MonitoringIsEnabled", () => AppDomain.MonitoringIsEnabled.ToString());
 			safeAddValue("AppDomain.MonitoringSurvivedProcessMemorySize", () => AppDomain.MonitoringSurvivedProcessMemorySize.ToString());
@@ -337,7 +337,7 @@ namespace PentegyServices.Logging.Core
 			safeAddValue("Environment.OSVersion", () => Environment.OSVersion.ToString());
 			safeAddValue("Environment.UserDomainName", () => Environment.UserDomainName);
 			addValue("Environment.CommandLine", Environment.CommandLine);
-#if NET4
+#if NET4_greater
 			addValue("Environment.Is64BitOperatingSystem", Environment.Is64BitOperatingSystem.ToString());
 			addValue("Environment.Is64BitProcess", Environment.Is64BitProcess.ToString());
 #endif

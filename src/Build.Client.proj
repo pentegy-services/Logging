@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    This project is called by CI system or manually to build client library for all targets.
+    
+    Example: MSBuild Build.Client.proj /t:Build /p:Configuration=Release;Platform=AnyCPU
+  -->
+  <Target Name="Build">
+    <PropertyGroup>
+      <ProgramFilesDir Condition=" '$(PROCESSOR_ARCHITECTURE)' == 'AMD64' ">$(MSBuildProgramFiles32)</ProgramFilesDir>
+      <ProgramFilesDir Condition=" '$(ProgramFilesDir)' == '' ">$(ProgramFiles)</ProgramFilesDir>
+
+      <CodeAnalysisRuleSetDirectories Condition=" '$(CodeAnalysisRuleSetDirectories)' == '' ">;$(ProgramFilesDir)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\Rule Sets;$(ProgramFilesDir)\Microsoft Visual Studio 14.0\Team Tools\Static Analysis Tools\Rule Sets;$(ProgramFilesDir)\Microsoft Visual Studio\2017\Enterprise\Team Tools\Static Analysis Tools\Rule Sets</CodeAnalysisRuleSetDirectories>
+      
+      <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+      <Platform Condition=" '$(Platform)' == 'Any CPU' ">AnyCPU</Platform>
+      <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+      <TargetFrameworkVersions Condition=" '$(TargetFrameworkVersions)' == '' ">v4.0;v4.5;v4.5.1;v4.5.2;v4.6;v4.6.1;v4.6.2;v4.7;v4.7.1</TargetFrameworkVersions>
+
+      <PackageDir>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\out))\$(Configuration)\</PackageDir>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <TargetFrameworks Include="$(TargetFrameworkVersions)" />
+    </ItemGroup>
+
+    <MSBuild Projects="Clean.proj"
+             Properties="Configuration=$(Configuration);Platform=$(Platform)"
+             Targets="Clean"
+             BuildInParallel="True" />
+
+    <MSBuild Projects="Client.sln"
+             Properties="Configuration=$(Configuration);Platform=$(Platform);TargetFrameworkVersion=%(TargetFrameworks.Identity);CodeAnalysisRuleSetDirectories=$(CodeAnalysisRuleSetDirectories);PublishToDir=$(PackageDir)"
+             Targets="Build;Package"
+             BuildInParallel="True" />
+  </Target>
+</Project>

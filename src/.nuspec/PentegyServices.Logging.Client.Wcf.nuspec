@@ -23,23 +23,110 @@ This package was built from the source at https://github.com/pentegy-services/Lo
       This package was built from the source at https://github.com/pentegy-services/Logging/commit/$commit_hash$
     </releaseNotes>
     <copyright>© 2011-2018 PENTEGY SERVICES LLC. All rights reserved.</copyright>
-    <tags>logging, tracing, log, logfiles, log4net</tags>
+    <tags>logging, tracing, log, logfiles, log4net, wcf</tags>
     <dependencies>
+      <group targetFramework="net40">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
       <group targetFramework="net45">
         <dependency id="Newtonsoft.Json" version="10.0.3" />
         <dependency id="log4net" version="2.0.8" />
-        <dependency id="Ninject" version="3.3.4" />
-        <dependency id="PentegyServices.Logging.Client" version="$version$" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net451">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net452">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net46">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net461">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net462">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net47">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
+      </group>
+      <group targetFramework="net471">
+        <dependency id="Newtonsoft.Json" version="10.0.3" />
+        <dependency id="log4net" version="2.0.8" />
+        <dependency id="Ninject" version="3.2.2" />
+        <dependency id="PentegyServices.Logging.Client" version="$client_version$" />
       </group>
     </dependencies>
     <references>
+      <group targetFramework="net40">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
       <group targetFramework="net45">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net451">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net452">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net46">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net461">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net462">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net47">
+        <reference file="PentegyServices.Logging.Wcf.dll" />
+      </group>
+      <group targetFramework="net471">
         <reference file="PentegyServices.Logging.Wcf.dll" />
       </group>
     </references>
   </metadata>
   <files>
-    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Wcf\PentegyServices.Logging.Wcf.dll" target="lib\net45" />
-    <file src="..\..\out\$configuration$\v4.5\PentegyServices.Logging.Wcf\PentegyServices.Logging.Wcf.xml" target="lib\net45" />
+    <file src="..\..\out\$configuration$\Client_Wcf-net40\PentegyServices.Logging.Wcf.*" target="lib\net40" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net45\PentegyServices.Logging.Wcf.*" target="lib\net45" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net451\PentegyServices.Logging.Wcf.*" target="lib\net451" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net452\PentegyServices.Logging.Wcf.*" target="lib\net452" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net46\PentegyServices.Logging.Wcf.*" target="lib\net46" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net461\PentegyServices.Logging.Wcf.*" target="lib\net461" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net462\PentegyServices.Logging.Wcf.*" target="lib\net462" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net47\PentegyServices.Logging.Wcf.*" target="lib\net47" />
+
+    <file src="..\..\out\$configuration$\Client_Wcf-net471\PentegyServices.Logging.Wcf.*" target="lib\net471" />
   </files>
 </package>
