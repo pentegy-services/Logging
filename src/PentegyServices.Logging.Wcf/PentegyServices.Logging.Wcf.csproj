@@ -19,14 +19,14 @@
     <When Condition=" '$(IsOpenSourceBuild)' != 'true' ">
       <ItemGroup>
         <Reference Include="PentegyServices.Logging.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=decb68d8572ab87a, processorArchitecture=MSIL">
-          <HintPath>..\packages\PentegyServices.Logging.Client.1.0.0\lib\$([System.String]::Copy('$(NETPath)').ToLowerInvariant())\PentegyServices.Logging.Core.dll</HintPath>
+          <HintPath>..\packages\PentegyServices.Logging.Client.1.0.1\lib\$([System.String]::Copy('$(NETPath)').ToLowerInvariant())\PentegyServices.Logging.Core.dll</HintPath>
         </Reference>
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
         <Reference Include="PentegyServices.Logging.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ec5e374b45b18cfa, processorArchitecture=MSIL">
-          <HintPath>..\packages\PentegyServices.Logging.Client.1.0.0\lib\$([System.String]::Copy('$(NETPath)').ToLowerInvariant())\PentegyServices.Logging.Core.dll</HintPath>
+          <HintPath>..\packages\PentegyServices.Logging.Client.1.0.1\lib\$([System.String]::Copy('$(NETPath)').ToLowerInvariant())\PentegyServices.Logging.Core.dll</HintPath>
         </Reference>
       </ItemGroup>
     </Otherwise>
